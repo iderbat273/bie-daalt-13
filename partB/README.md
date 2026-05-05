@@ -1,7 +1,9 @@
 # Part B — Implementation
 
-## Run
+## Setup
 npm install
+
+## Run
 npm run dev
 
 ## Endpoints

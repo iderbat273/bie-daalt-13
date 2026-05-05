@@ -9,3 +9,5 @@ This repository contains:
 - Part A
 - Part B
 - Part C
+## Part B
+Implementation is located in `partB/`.
