@@ -1,10 +1,5 @@
-# Part B — Implementation
+# Part B — Implementation (Personal Task Tracker)
 
 ## Setup
+```bash
 npm install
-
-## Run
-npm run dev
-
-## Endpoints
-- GET /health
