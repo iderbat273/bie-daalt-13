@@ -1,146 +1,29 @@
 openapi: 3.0.0
 info:
-  title: Personal Task Tracker API
+  title: Task API
   version: 1.0.0
-  description: Simple task tracker REST API
-
-servers:
-  - url: http://localhost:3000
 
 paths:
   /api/tasks:
     get:
-      summary: List tasks
-      parameters:
-        - name: status
-          in: query
-          schema:
-            type: string
-            enum: [todo, in_progress, done]
-        - name: priority
-          in: query
-          schema:
-            type: string
-            enum: [low, medium, high]
-        - name: search
-          in: query
-          schema:
-            type: string
+      summary: Get all tasks
       responses:
         "200":
-          description: List of tasks
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Task"
+          description: OK
 
     post:
-      summary: Create a task
+      summary: Create task
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateTaskRequest"
+              type: object
+              properties:
+                title:
+                  type: string
+                priority:
+                  type: string
       responses:
         "201":
-          description: Created task
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Task"
-
-  /api/tasks/{id}:
-    put:
-      summary: Update a task
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UpdateTaskRequest"
-      responses:
-        "200":
-          description: Updated task
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Task"
-        "404":
-          description: Task not found
-
-    delete:
-      summary: Delete a task
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        "204":
-          description: Task deleted
-        "404":
-          description: Task not found
-
-components:
-  schemas:
-    Task:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum: [todo, in_progress, done]
-        priority:
-          type: string
-          enum: [low, medium, high]
-        dueDate:
-          type: string
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-
-    CreateTaskRequest:
-      type: object
-      required: [title]
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-        priority:
-          type: string
-          enum: [low, medium, high]
-        dueDate:
-          type: string
-
-    UpdateTaskRequest:
-      type: object
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum: [todo, in_progress, done]
-        priority:
-          type: string
-          enum: [low, medium, high]
-        dueDate:
-          type: string
+          description: Created
